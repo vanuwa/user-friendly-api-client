@@ -72,7 +72,7 @@ class Service {
             pug
           },
           defaultExtension: 'pug',
-          relativeTo: Path.join(__dirname, '../'),
+          relativeTo: __dirname,
           path: 'views'
         });
 

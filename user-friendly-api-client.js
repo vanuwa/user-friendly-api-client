@@ -2,7 +2,7 @@
  * Created by vanuwa on 8/14/16.
  */
 const config = require('config');
-const Service = require('./app/core/service');
+const Service = require('./app/service');
 const util = require('util');
 
 const options = {
