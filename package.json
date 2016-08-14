@@ -1,0 +1,29 @@
+{
+  "name": "user-friendly-api-client",
+  "version": "1.0.0",
+  "description": "Third party client that helps to test Realtime API functionality.",
+  "main": "user-friendly-api-client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanuwa/user-friendly-api-client.git"
+  },
+  "keywords": [
+    "user",
+    "friendly",
+    "api",
+    "client",
+    "api",
+    "realtime.",
+    "third-party",
+    "user friendly"
+  ],
+  "author": "Ivan Kebal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanuwa/user-friendly-api-client/issues"
+  },
+  "homepage": "https://github.com/vanuwa/user-friendly-api-client#readme"
+}
