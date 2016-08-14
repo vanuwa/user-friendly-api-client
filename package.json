@@ -25,5 +25,19 @@
   "bugs": {
     "url": "https://github.com/vanuwa/user-friendly-api-client/issues"
   },
-  "homepage": "https://github.com/vanuwa/user-friendly-api-client#readme"
+  "homepage": "https://github.com/vanuwa/user-friendly-api-client#readme",
+  "dependencies": {
+    "config": "^1.21.0",
+    "good": "^7.0.1",
+    "good-console": "^6.1.2",
+    "good-squeeze": "^3.0.1",
+    "hapi": "^13.4.1",
+    "inert": "^4.0.0",
+    "jasmine": "^2.4.1",
+    "js-yaml": "^3.6.1"
+  },
+  "devDependencies": {
+    "eslint-config-kwebbl": "^0.1.0",
+    "jasmine-spec-reporter": "^2.5.0"
+  }
 }
