@@ -15,7 +15,7 @@ class Service {
       connections: {
         routes: {
           files: {
-            relativeTo: Path.join(__dirname, './')
+            relativeTo: Path.join(__dirname, './assets')
           }
         }
       }
@@ -37,10 +37,6 @@ class Service {
         port: options.port
       });
 
-      if (routes) {
-        server.route(routes);
-      }
-
       server.register([
         Inert, Vision, {
           register: Good,
@@ -60,6 +56,10 @@ class Service {
           }
         }
       ]).then(() => {
+        if (routes) {
+          server.route(routes);
+        }
+
         server.views({
           engines: {
             pug

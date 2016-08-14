@@ -12,4 +12,12 @@ module.exports = [{
   method: 'GET',
   path: '/',
   handler: Controller.index
+}, {
+  method: 'GET',
+  path: '/{path*}',
+  handler: {
+    directory: {
+      path: '.'
+    }
+  }
 }];
