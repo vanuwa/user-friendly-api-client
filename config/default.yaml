@@ -1,0 +1,7 @@
+app:
+  name: user-friendly-api-client
+  host: localhost
+  port: 8000
+api:
+  host: localhost
+  port: 3000
