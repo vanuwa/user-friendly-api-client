@@ -5,3 +5,5 @@ service:
 api:
   host: localhost
   port: 3000
+template_engine:
+  is_cached: true

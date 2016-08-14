@@ -66,7 +66,8 @@ class Service {
           },
           defaultExtension: 'pug',
           relativeTo: __dirname,
-          path: 'views'
+          path: 'views',
+          isCached: options.is_view_cached || true
         });
 
         resolve(true);

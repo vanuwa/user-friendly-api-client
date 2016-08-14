@@ -7,7 +7,8 @@ const util = require('util');
 
 const options = {
   host: config.service.host,
-  port: config.service.port
+  port: config.service.port,
+  is_view_cached: config.template_engine.is_cached
 };
 const service = new Service(options);
 
