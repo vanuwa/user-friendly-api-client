@@ -1,4 +1,4 @@
-app:
+service:
   name: user-friendly-api-client
   host: localhost
   port: 8000
