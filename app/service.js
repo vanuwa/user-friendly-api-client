@@ -7,6 +7,7 @@ const Inert = require('inert');
 const Good = require('good');
 const Vision = require('vision');
 const pug = require('pug');
+const routes = require('./routes');
 
 class Service {
   constructor (options) {
@@ -36,16 +37,8 @@ class Service {
         port: options.port
       });
 
-      if (options.routes) {
-        server.route(options.routes);
-      } else {
-        server.route([{
-          method: 'GET',
-          path: '/',
-          handler: (request, reply) => {
-            reply.view('index');
-          }
-        }]);
+      if (routes) {
+        server.route(routes);
       }
 
       server.register([
