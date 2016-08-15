@@ -1,5 +1,10 @@
 extends ./layout.pug
-block title
-  title User Friendly client for API
+
+block header
+  .text-center
+    h2 List of features
+
 block content
-  div Hello world!
+  ul
+    li.list-unstyled
+      a(href='/subscriptions') Subscriptions. Subscribe and unsubscribe on events.

@@ -1,0 +1,14 @@
+extends ../layout.pug
+
+block header
+  .text-center
+    h2 List of subscriptions
+
+block content
+  div.text-center
+    if subscriptions.length > 0
+      // render table with items
+    else
+      h4 No items
+
+

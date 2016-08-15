@@ -67,7 +67,7 @@ class Service {
           defaultExtension: 'pug',
           relativeTo: __dirname,
           path: 'views',
-          isCached: options.is_view_cached || true
+          isCached: typeof options.is_view_cached === 'undefined' ? true : options.is_view_cached
         });
 
         resolve(true);
