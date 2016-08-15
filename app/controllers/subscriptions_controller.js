@@ -38,10 +38,19 @@ class SubscriptionsController {
     if (request.params.id) {
       subscription._id = request.params.id;
 
-      return reply.view('subscriptions/show', { subscription }).code(200);
+      reply.view('subscriptions/show', { subscription }).code(200);
     } else {
       reply({ msg: 'Bad request params', code: 400 }).code(400);
     }
+  }
+
+  new (request, reply) {
+    const subscription = {
+      event_types: [],
+      target_url: ''
+    };
+
+    return reply.view('subscriptions/new', { subscription }).code(200);
   }
 }
 

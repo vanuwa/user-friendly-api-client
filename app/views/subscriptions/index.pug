@@ -1,5 +1,12 @@
 extends ../layout.pug
 
+block nav
+  .nav
+    ol.breadcrumb
+      li
+        a(href='/') Features
+      li.active Subscriptions
+
 block header
   .text-center
     h2 List of subscriptions

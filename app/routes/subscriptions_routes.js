@@ -12,4 +12,8 @@ module.exports = [{
   method: 'GET',
   path: '/subscriptions/{id}',
   handler: controller.show
+}, {
+  method: 'GET',
+  path: '/subscriptions/new',
+  handler: controller.new
 }];

@@ -1,8 +1,17 @@
 extends ../layout.pug
 
+block nav
+  .nav
+    ol.breadcrumb
+      li
+        a(href='/') Features
+      li
+        a(href='/subscriptions') Subscriptions
+      li.active Show
+
 block header
   .text-center
-    h2 Subscription item for - #{subscription._id}
+    h2 Subscription item
 
 block content
   form.form-horizontal
