@@ -1,0 +1,22 @@
+mixin table_row(index, item)
+  tr
+    td= index
+    td= item._id
+    td= item.event_types
+    td= item.target_url
+    td
+      a.btn.btn-info(href='/subscriptions/' + item._id) View
+
+mixin table(collection)
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th.text-center #
+          th.text-center _id
+          th.text-center Events
+          th.text-center Target URL
+          th.text-center Actions
+      tbody
+        each item, index in collection
+          +table_row(index, item)

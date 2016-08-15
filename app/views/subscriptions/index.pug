@@ -5,10 +5,9 @@ block header
     h2 List of subscriptions
 
 block content
+  include ./_table.pug
   div.text-center
     if subscriptions.length > 0
-      // render table with items
+      +table(subscriptions)
     else
       h4 No items
-
-
