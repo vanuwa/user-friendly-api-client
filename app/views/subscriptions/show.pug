@@ -5,3 +5,20 @@ block header
     h2 Subscription item for - #{subscription._id}
 
 block content
+  form.form-horizontal
+    .form-group
+      label.control-label.col-sm-2(for='subscription_id') ID
+      .col-sm-10
+        #subscription_id.form-control= subscription._id
+    .form-group
+      label.control-label.col-sm-2(for='subscription_rev') Revision
+      .col-sm-10
+        #subscription_rev.form-control= subscription._rev
+    .form-group
+      label.control-label.col-sm-2(for='subscription_events') Events
+      .col-sm-10
+        #subscription_events.form-control= subscription.event_types
+    .form-group
+      label.control-label.col-sm-2(for='subscription_target_url') Target URL
+      .col-sm-10
+        #subscription_target_url.form-control= subscription.target_url
