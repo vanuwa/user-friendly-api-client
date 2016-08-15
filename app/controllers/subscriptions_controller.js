@@ -1,27 +1,14 @@
 /**
  * Created by ikebal on 15.08.16.
  */
+const SubscriptionModel = require('../models/subscription_model');
+
 class SubscriptionsController {
   index (request, reply) {
-    const subscriptions = [{
-      _id: '22651433750a3aad708d6e2afe8fe1c5',
-      _rev: '2-e3f76d012077787c8b3f963ea3022282',
-      event_types: [
-        'ringing',
-        'answered'
-      ],
-      target_url: 'http://localhost:3000/events'
-    }, {
-      _id: '22651433750a3aad708d6e2afe900936',
-      _rev: '2-d2a9f02f406cdf67994d99b33cec1518',
-      event_types: [
-        'answered',
-        'hangup'
-      ],
-      target_url: 'http://localhost:3000/events'
-    }];
-
-    return reply.view('subscriptions/index', { subscriptions }).code(200);
+    SubscriptionModel.all().then((subscriptions) => {
+      console.log('subscriptions', subscriptions);
+      reply.view('subscriptions/index', subscriptions).code(200);
+    });
   }
 
   show (request, reply) {

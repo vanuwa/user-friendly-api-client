@@ -37,6 +37,7 @@
     "jasmine": "^2.4.1",
     "js-yaml": "^3.6.1",
     "pug": "^2.0.0-beta5",
+    "request": "^2.74.0",
     "vision": "^4.1.0"
   },
   "devDependencies": {
