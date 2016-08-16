@@ -8,6 +8,9 @@ const Good = require('good');
 const Vision = require('vision');
 const pug = require('pug');
 const routes = require('./routes');
+const util = require('util');
+
+console.log(`[ user-friendly-api-client ] Service routes are \r\n ${util.inspect(routes)}`);
 
 class Service {
   constructor (options) {
