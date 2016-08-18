@@ -14,3 +14,15 @@ block header
     h2 Create subscription
 
 block content
+  form.form-horizontal(action='/subscriptions/create', method='POST')
+    .form-group
+      label.control-label.col-sm-3(for='subscription_events') Events
+      .col-sm-6
+        input#subscription_events.form-control(type='text', name='event_types', value=subscription.event_types)
+    .form-group
+      label.control-label.col-sm-3(for='subscription_target_url') Target URL
+      .col-sm-6
+        input#subscription_target_url.form-control(type='text', name='target_url', value=subscription.target_url)
+    .form-group
+      .col-sm-offset-3.col-sm-6
+        button.btn.btn-success.form-control(type='submit') Create Subscription

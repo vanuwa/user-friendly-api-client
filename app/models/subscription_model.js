@@ -5,6 +5,7 @@
 const config = require('config').api;
 const ApplicationModel = require('./application_model');
 const request = require('request');
+const util = require('util');
 
 const api_url = `${config.protocol}://${config.host}:${config.port}`;
 
@@ -19,7 +20,22 @@ class SubscriptionModel extends ApplicationModel {
 
   save () {
     return new Promise((resolve) => {
-      resolve({});
+      const options = {
+        method: 'POST',
+        uri: `${api_url}/subscriptions`,
+        json: true,
+        body: {
+          subscription: this.toJSON()
+        }
+      };
+
+      request(options, (error, response, body) => {
+        console.log(`[ user-friendly-api-client ][ Subscription::save ][ ERROR ] ${util.inspect(error)}\r\n`);
+        console.log(`[ user-friendly-api-client ][ Subscription::save ][ RESPONSE ] ${util.inspect(response)}\r\n`);
+        console.log(`[ user-friendly-api-client ][ Subscription::save ][ RESPONSE ] ${util.inspect(body)}\r\n`);
+
+        resolve(body);
+      });
     });
   }
 

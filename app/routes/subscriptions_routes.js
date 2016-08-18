@@ -16,4 +16,8 @@ module.exports = [{
   method: 'GET',
   path: '/subscriptions/new',
   handler: controller.new
+}, {
+  method: 'POST',
+  path: '/subscriptions/create',
+  handler: controller.create
 }];

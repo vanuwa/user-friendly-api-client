@@ -1,12 +1,11 @@
 /**
  * Created by ikebal on 15.08.16.
  */
-const SubscriptionModel = require('../models/subscription_model');
+const Subscription = require('../models/subscription_model');
 
 class SubscriptionsController {
   index (request, reply) {
-    SubscriptionModel.all().then((subscriptions) => {
-      console.log('subscriptions', subscriptions);
+    Subscription.all().then((subscriptions) => {
       reply.view('subscriptions/index', { subscriptions }).code(200);
     });
   }
@@ -38,6 +37,18 @@ class SubscriptionsController {
     };
 
     return reply.view('subscriptions/new', { subscription }).code(200);
+  }
+
+  create (request, reply) {
+    const properties = request.payload;
+
+    properties.event_types = [properties.event_types];
+
+    const subscription = new Subscription(properties);
+
+    subscription.save().then(() => reply.redirect('/subscriptions')).catch((exception) => {
+      reply.view('subscriptions/new', { subscription: subscription.toJSON(), errors: { exception } });
+    });
   }
 }
 
