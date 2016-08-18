@@ -7,7 +7,7 @@ class SubscriptionsController {
   index (request, reply) {
     SubscriptionModel.all().then((subscriptions) => {
       console.log('subscriptions', subscriptions);
-      reply.view('subscriptions/index', subscriptions).code(200);
+      reply.view('subscriptions/index', { subscriptions }).code(200);
     });
   }
 

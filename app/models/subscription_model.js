@@ -53,12 +53,19 @@ class SubscriptionModel extends ApplicationModel {
         method: 'GET',
         uri: `${api_url}/subscriptions`
       }, (error, response, body) => {
-        /*console.log('Error', error);
-        console.log('Body', body);*/
 
-        resolve(body);
+        /* console.log('Error', error); */
+
+        const json = JSON.parse(body);
+        const extracted_docs = SubscriptionModel.extractDocs(json.subscriptions);
+
+        resolve(extracted_docs);
       });
     });
+  }
+
+  static extractDocs (collection) {
+    return collection.filter((item) => item._id.indexOf('_design') < 0);
   }
 }
 
