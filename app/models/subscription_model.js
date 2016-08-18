@@ -59,19 +59,27 @@ class SubscriptionModel extends ApplicationModel {
 
   static get (id) {
     return new Promise((resolve) => {
-      resolve({});
+      const options = {
+        method: 'GET',
+        uri: `${api_url}/subscriptions/${id}`
+      };
+
+      request(options, (error, response, body) => {
+        const json = JSON.parse(body);
+
+        resolve(json.subscription);
+      });
     });
   }
 
   static all () {
     return new Promise((resolve) => {
-      request({
+      const options = {
         method: 'GET',
         uri: `${api_url}/subscriptions`
-      }, (error, response, body) => {
+      };
 
-        /* console.log('Error', error); */
-
+      request(options, (error, response, body) => {
         const json = JSON.parse(body);
         const extracted_docs = SubscriptionModel.extractDocs(json.subscriptions);
 

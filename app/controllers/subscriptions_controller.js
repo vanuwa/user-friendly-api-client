@@ -11,20 +11,12 @@ class SubscriptionsController {
   }
 
   show (request, reply) {
-    const subscription = {
-      _id: '22651433750a3aad708d6e2afe8fe1c5',
-      _rev: '2-e3f76d012077787c8b3f963ea3022282',
-      event_types: [
-        'ringing',
-        'answered'
-      ],
-      target_url: 'http://localhost:3000/events'
-    };
-
     if (request.params.id) {
-      subscription._id = request.params.id;
-
-      reply.view('subscriptions/show', { subscription }).code(200);
+      Subscription.get(request.params.id).then((subscription) => {
+        reply.view('subscriptions/show', { subscription }).code(200);
+      }).catch((exception) => {
+        reply.view('subscriptions/show', { subscription: null, error: exception }).code(500);
+      });
     } else {
       reply({ msg: 'Bad request params', code: 400 }).code(400);
     }
