@@ -1,0 +1,253 @@
+swagger: '2.0'
+info:
+  title: API.
+  description: "Semi public API"
+  version: "0.1.0"
+
+# the domain of the service
+host: kwebbl.com
+
+# array of all schemes that your API supports
+schemes:
+  - http
+  - https
+
+# will be prefixed to all paths
+basePath: /api/v0.1
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+
+paths:
+
+  /subscriptions:
+    get:
+      summary: Get active subscriptions
+      responses:
+        200:
+          description: "Returns list of subscriptions"
+          schema:
+            type: object
+            properties:
+              subscriptions:
+                type: array
+                items:
+                  $ref: '#/definitions/Subscription'
+
+    post:
+      summary: Subscribe on event(s) based on filters
+      description: Create subscription entity(ies) according to present filter within request body
+      parameters:
+        - name: subscription
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Subscription'
+      responses:
+        200:
+          description: "OK"
+          schema:
+            properties:
+              call:
+                $ref: '#/definitions/DefaultResponsePOST'
+
+  /subscriptions/{subscription_id}:
+    get:
+      summary: Get certain subscription item
+      description: Return mete data about the subscription with provided identifier (subscription_id)
+      parameters:
+        - name: subscription_id
+          in: path
+          description: identifier of subscription
+          type: string
+          required: true
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: object
+            properties:
+              subscription:
+                $ref: '#/definitions/Subscription'
+    delete:
+      summary: Unsubscribe from event(s)
+      description: Remove subscription record by subscription_id
+      parameters:
+        - name: subscription_id
+          in: path
+          description: identifier of subscription
+          type: string
+          required: true
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: object
+            properties:
+              subscription:
+                $ref: '#/definitions/Subscription'
+
+  /calls:
+    get:
+      summary: "[ !!! NOT IMPLEMENT ] Get active calls"
+      responses:
+        200:
+          description: "Returns list of active calls"
+          schema:
+            type: object
+            properties:
+              calls:
+                type: array
+                items:
+                  $ref: '#/definitions/Call'
+    post:
+      summary: Place call
+      description: Make a call between and agents
+      parameters:
+        - name: call
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              from:
+                $ref: "#/definitions/CallAgent"
+              to:
+                $ref: "#/definitions/CallAgent"
+
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: object
+            properties:
+              call:
+                $ref: '#/definitions/DefaultResponsePOST'
+
+  /calls/{call_id}:
+    get:
+      summary: "[ !!! NOT IMPLEMENT ] Get certain call"
+      description: Return meta data about call
+      parameters:
+        - name: call_id
+          in: path
+          description: identifier of a call
+          type: string
+          required: true
+      responses:
+        200:
+          description: Return detailed meta data about call
+          schema:
+            type: object
+            properties:
+              call:
+                $ref: "#/definitions/Call"
+
+    put:
+      summary: Modify active call
+      description: Do actions with active call
+      parameters:
+        - name: call_id
+          in: path
+          description: identifier of a call
+          type: string
+          required: true
+        - name: call
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+                description: identifier of active call
+              action:
+                $ref: '#/definitions/CallAction'
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: object
+            properties:
+              call:
+                $ref: '#/definitions/Call'
+
+definitions:
+
+  Extension:
+    type: object
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      caller_id:
+        type: number
+      image_id:
+        type: string
+
+  DefaultResponsePOST:
+    type: object
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+
+  SubscriptionFilter:
+    type: object
+    properties:
+      name:
+        description: Filter key
+        type: string
+      value:
+        description: Filter value
+        type: string
+
+  Subscription:
+    type: object
+    properties:
+      _id:
+        type: string
+      event_types:
+        type: array
+        items:
+          type: string
+      filters:
+        type: array
+        items:
+          $ref: '#/definitions/SubscriptionFilter'
+      target_url:
+        type: string
+
+  Call:
+    type: object
+    properties:
+      _id:
+        type: string
+      from:
+        $ref: '#/definitions/Extension'
+      to:
+        $ref: '#/definitions/Extension'
+
+  CallAgent:
+    type: object
+    properties:
+      extension_id:
+        type: string
+      number:
+        type: string
+      company_id:
+        type: string
+
+  CallAction:
+    type: object
+    properties:
+      name:
+        type: string
+      params:
+        type: object
