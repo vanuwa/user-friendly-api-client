@@ -6,6 +6,7 @@ const config = require('config').api;
 const ApplicationModel = require('./application_model');
 const request = require('request');
 const util = require('util');
+const auth_token = 'Bearer T5mpEtLYEP8OY97y2m4ItYkHDhsflDPH';
 
 const api_url = `${config.protocol}://${config.host}:${config.port}`;
 
@@ -24,6 +25,9 @@ class SubscriptionModel extends ApplicationModel {
         method: 'POST',
         uri: `${api_url}/subscriptions`,
         json: true,
+        headers: {
+          authorization: auth_token
+        },
         body: {
           subscription: this.toJSON()
         }
@@ -61,13 +65,15 @@ class SubscriptionModel extends ApplicationModel {
     return new Promise((resolve) => {
       const options = {
         method: 'GET',
-        uri: `${api_url}/subscriptions/${id}`
+        uri: `${api_url}/subscriptions/${id}`,
+        json: true,
+        headers: {
+          authorization: auth_token
+        }
       };
 
       request(options, (error, response, body) => {
-        const json = JSON.parse(body);
-
-        resolve(json.subscription);
+        resolve(body.subscription);
       });
     });
   }
@@ -76,11 +82,20 @@ class SubscriptionModel extends ApplicationModel {
     return new Promise((resolve) => {
       const options = {
         method: 'GET',
-        uri: `${api_url}/subscriptions`
+        uri: `${api_url}/subscriptions`,
+        json: true,
+        headers: {
+          authorization: auth_token
+        }
       };
 
       request(options, (error, response, body) => {
-        const json = JSON.parse(body);
+        let json = body;
+
+        if (typeof body === 'string') {
+          json = JSON.parse(body);
+        }
+
         const extracted_docs = SubscriptionModel.extractDocs(json.subscriptions);
 
         resolve(extracted_docs);
