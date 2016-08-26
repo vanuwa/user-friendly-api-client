@@ -7,14 +7,14 @@ class SubscriptionsController {
   index (request, reply) {
     Subscription.all().then((subscriptions) => {
       reply.view('subscriptions/index', { subscriptions }).code(200);
-    });
+    }, (error) => reply({ subscriptions: null, error: { msg: error } }).code(500));
   }
 
   show (request, reply) {
     if (request.params.id) {
       Subscription.get(request.params.id).then((subscription) => {
         reply.view('subscriptions/show', { subscription }).code(200);
-      }).catch((exception) => {
+      }, (error) => reply({ subscriptions: null, error: { msg: error } }).code(500)).catch((exception) => {
         reply.view('subscriptions/show', { subscription: null, error: exception }).code(500);
       });
     } else {

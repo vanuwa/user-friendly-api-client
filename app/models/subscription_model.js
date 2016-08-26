@@ -62,7 +62,7 @@ class SubscriptionModel extends ApplicationModel {
   }
 
   static get (id) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const options = {
         method: 'GET',
         uri: `${api_url}/subscriptions/${id}`,
@@ -73,13 +73,20 @@ class SubscriptionModel extends ApplicationModel {
       };
 
       request(options, (error, response, body) => {
-        resolve(body.subscription);
+        console.log(`[ get ][ ERROR ] ${util.inspect(error)}\r\n`);
+        console.log(`[ get ][ BODY ] ${util.inspect(body)}\r\n`);
+
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body.subscription);
+        }
       });
     });
   }
 
   static all () {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const options = {
         method: 'GET',
         uri: `${api_url}/subscriptions`,
@@ -90,15 +97,22 @@ class SubscriptionModel extends ApplicationModel {
       };
 
       request(options, (error, response, body) => {
-        let json = body;
+        console.log(`[ all ][ ERROR ] ${util.inspect(error)}\r\n`);
+        console.log(`[ all ][ BODY ] ${util.inspect(body)}\r\n`);
 
-        if (typeof body === 'string') {
-          json = JSON.parse(body);
+        if (error) {
+          reject(error);
+        } else {
+          let json = body;
+
+          if (typeof body === 'string') {
+            json = JSON.parse(body);
+          }
+
+          const extracted_docs = SubscriptionModel.extractDocs(json.subscriptions);
+
+          resolve(extracted_docs);
         }
-
-        const extracted_docs = SubscriptionModel.extractDocs(json.subscriptions);
-
-        resolve(extracted_docs);
       });
     });
   }
