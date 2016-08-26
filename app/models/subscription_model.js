@@ -100,18 +100,12 @@ class SubscriptionModel extends ApplicationModel {
         console.log(`[ all ][ ERROR ] ${util.inspect(error)}\r\n`);
         console.log(`[ all ][ BODY ] ${util.inspect(body)}\r\n`);
 
-        if (error) {
-          reject(error);
-        } else {
-          let json = body;
-
-          if (typeof body === 'string') {
-            json = JSON.parse(body);
-          }
-
-          const extracted_docs = SubscriptionModel.extractDocs(json.subscriptions);
+        if (response.statusCode === 200) {
+          const extracted_docs = SubscriptionModel.extractDocs(body.subscriptions);
 
           resolve(extracted_docs);
+        } else {
+          reject(error || body);
         }
       });
     });
