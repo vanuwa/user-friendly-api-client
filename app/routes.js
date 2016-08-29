@@ -4,6 +4,7 @@
 let routes = require('./routes/application_routes');
 
 routes = routes.concat(require('./routes/subscriptions_routes'));
+routes = routes.concat(require('./routes/calls_routes'));
 routes = routes.concat(require('./routes/events_routes'));
 
 module.exports = routes;

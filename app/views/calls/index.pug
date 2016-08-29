@@ -1,0 +1,21 @@
+extends ../layout.pug
+
+block nav
+  .nav
+    ol.breadcrumb
+      li
+        a(href='/') Features
+      li.active Calls
+      li
+        a(href='/calls/new') New
+
+block header
+  .text-center
+    h2 List of calls
+
+block content
+  div.text-center
+    if calls.length > 0
+      h4 There are some calls exists
+    else
+      h4 No calls found
