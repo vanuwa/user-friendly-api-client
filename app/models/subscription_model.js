@@ -20,7 +20,7 @@ class SubscriptionModel extends ApplicationModel {
   }
 
   save () {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const options = {
         method: 'POST',
         uri: `${api_url}/subscriptions`,
@@ -38,7 +38,11 @@ class SubscriptionModel extends ApplicationModel {
         console.log(`[ user-friendly-api-client ][ Subscription::save ][ RESPONSE ] ${util.inspect(response)}\r\n`);
         console.log(`[ user-friendly-api-client ][ Subscription::save ][ RESPONSE ] ${util.inspect(body)}\r\n`);
 
-        resolve(body);
+        if (response && response.statusCode === 200) {
+          resolve(body);
+        } else {
+          reject(error || body);
+        }
       });
     });
   }
@@ -76,10 +80,10 @@ class SubscriptionModel extends ApplicationModel {
         console.log(`[ get ][ ERROR ] ${util.inspect(error)}\r\n`);
         console.log(`[ get ][ BODY ] ${util.inspect(body)}\r\n`);
 
-        if (error) {
-          reject(error);
-        } else {
+        if (response && response.statusCode === 200) {
           resolve(body.subscription);
+        } else {
+          reject(error || body);
         }
       });
     });
@@ -100,7 +104,7 @@ class SubscriptionModel extends ApplicationModel {
         console.log(`[ all ][ ERROR ] ${util.inspect(error)}\r\n`);
         console.log(`[ all ][ BODY ] ${util.inspect(body)}\r\n`);
 
-        if (response.statusCode === 200) {
+        if (response && response.statusCode === 200) {
           const extracted_docs = SubscriptionModel.extractDocs(body.subscriptions);
 
           resolve(extracted_docs);
