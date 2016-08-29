@@ -12,3 +12,41 @@ block nav
 block header
   .text-center
     h2 Create a call
+
+block content
+  form.form-horizontal(action='/calls/create', method='POST')
+    .panel.panel-default
+      .panel-heading
+        .panel-title From
+      .panel-body
+        .form-group
+          label.control-label.col-sm-3(for='call_from_key') Key
+          .col-sm-6
+            input#call_from_key.form-control(type='text', name='call_from_key', value=call.from.key)
+            span.help-block E.g. 'extension_id' or 'number'
+
+        .form-group
+          label.control-label.col-sm-3(for='call_from_value') Value
+          .col-sm-6
+            input#call_from_value.form-control(type='text', name='call_from_value', value=call.from.value)
+            span.help-block E.g. '3312becea0e3030a182a0a9319a95103' or '+4969365065450'
+
+    .panel.panel-default
+      .panel-heading
+        .panel-title To
+      .panel-body
+        .form-group
+          label.control-label.col-sm-3(for='call_to_key') Key
+          .col-sm-6
+            input#call_to_key.form-control(type='text', name='call_from_key', value=call.to.key)
+            span.help-block E.g. 'extension_id' or 'number'
+
+        .form-group
+          label.control-label.col-sm-3(for='call_to_value') Value
+          .col-sm-6
+            input#call_to_value.form-control(type='text', name='call_to_value', value=call.to.value)
+            span.help-block E.g. '3312becea0e3030a182a0a9319a95103' or '+4969365065450'
+
+    .form-group
+      .col-sm-offset-3.col-sm-6
+        button.btn.btn-success.form-control(type='submit') Make a call
