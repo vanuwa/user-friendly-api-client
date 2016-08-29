@@ -22,6 +22,18 @@ class SubscriptionsController {
     }
   }
 
+  destroy (request, reply) {
+    if (request.params.id) {
+      Subscription.remove(request.params.id).then(() => {
+        reply.redirect('/subscriptions');
+      }, (error) => reply({ subscriptions: null, error: { msg: error } }).code(500)).catch((exception) => {
+        reply.view('subscriptions/show', { subscription: null, error: exception }).code(500);
+      });
+    } else {
+      reply({ msg: 'Bad request params', code: 400 }).code(400);
+    }
+  }
+
   new (request, reply) {
     const subscription = {
       event_types: [],

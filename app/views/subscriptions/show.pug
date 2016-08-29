@@ -14,7 +14,8 @@ block header
     h2 Subscription item
 
 block content
-  form.form-horizontal
+  - var action = '/subscriptions/' + subscription._id + '/destroy'
+  form.form-horizontal(action=action, method='POST')
     .form-group
       label.control-label.col-sm-2(for='subscription_id') ID
       .col-sm-10
@@ -46,3 +47,7 @@ block content
         label.control-label.col-sm-2(for='subscription_created_by') Created by (User ID)
         .col-sm-10
             #subscription_created_by.form-control= user_id
+
+    .form-group
+      .col-sm-2
+        button.btn.btn-danger.form-control(type='submit') Delete

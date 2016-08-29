@@ -56,8 +56,29 @@ class SubscriptionModel extends ApplicationModel {
   }
 
   static remove (id) {
-    return new Promise((resolve) => {
-      resolve({});
+    return new Promise((resolve, reject) => {
+      const options = {
+        method: 'DELETE',
+        uri: `${api_url}/subscriptions/${id}`,
+        json: true,
+        headers: {
+          authorization: auth_token
+        }
+      };
+
+      console.log(`[ DELETE ] ${options.uri}`);
+
+      request(options, (error, response, body) => {
+        console.log(`[ remove ][ Status Code ] ${response && response.statusCode}\r\n`);
+        console.log(`[ remove ][ ERROR ] ${util.inspect(error)}\r\n`);
+        console.log(`[ remove ][ BODY ] ${util.inspect(body)}\r\n`);
+
+        if (response && response.statusCode === 200) {
+          resolve(body);
+        } else {
+          reject(error || body);
+        }
+      });
     });
   }
 
