@@ -31,3 +31,18 @@ block content
       label.control-label.col-sm-2(for='subscription_target_url') Target URL
       .col-sm-10
         #subscription_target_url.form-control= subscription.target_url
+
+    - var organization_id = subscription.organization_id || '' ;
+    if !!organization_id
+      .form-group
+        label.control-label.col-sm-2(for='subscription_organization_id') Organization ID
+        .col-sm-10
+          #subscription_organization_id.form-control= organization_id
+
+    - var is_author_present = !!(subscription.created_by && subscription.created_by.user_id);
+    - var user_id = is_author_present ? subscription.created_by.user_id : '';
+    if !!user_id
+      .form-group
+        label.control-label.col-sm-2(for='subscription_created_by') Created by (User ID)
+        .col-sm-10
+            #subscription_created_by.form-control= user_id
