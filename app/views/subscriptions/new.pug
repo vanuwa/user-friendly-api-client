@@ -16,9 +16,13 @@ block header
 block content
   form.form-horizontal(action='/subscriptions/create', method='POST')
     .form-group
-      label.control-label.col-sm-3(for='subscription_events') Events
-      .col-sm-6
-        input#subscription_events.form-control(type='text', name='event_types', value=subscription.event_types)
+      label.control-label.col-sm-3 Events
+      .col-sm-offset-1.col-sm-4
+        each event_type in event_types
+          label.checkbox
+            input(type='checkbox' id=event_type name="event_types" value=event_type)
+            .text-capitalize= event_type
+
     .form-group
       label.control-label.col-sm-3(for='subscription_target_url') Target URL
       .col-sm-6

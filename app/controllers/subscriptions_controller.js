@@ -39,16 +39,15 @@ class SubscriptionsController {
       event_types: [],
       target_url: ''
     };
+    const event_types = [
+      'start', 'trying', 'ringing', 'answered', 'hangup', 'hold', 'resume', 'transfer'
+    ];
 
-    return reply.view('subscriptions/new', { subscription }).code(200);
+    return reply.view('subscriptions/new', { subscription, event_types }).code(200);
   }
 
   create (request, reply) {
-    const properties = request.payload;
-
-    properties.event_types = [properties.event_types];
-
-    const subscription = new Subscription(properties);
+    const subscription = new Subscription(request.payload);
 
     subscription.save().then(() => reply.redirect('/subscriptions')).catch((exception) => {
       reply.view('subscriptions/new', { subscription: subscription.toJSON(), errors: { exception } });
