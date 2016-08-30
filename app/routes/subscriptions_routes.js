@@ -9,6 +9,10 @@ module.exports = [{
   path: '/subscriptions',
   handler: controller.index
 }, {
+  method: 'GET',
+  path: '/subscriptions/{id}/destroy',
+  handler: controller.destroy
+}, {
   method: 'POST',
   path: '/subscriptions/{id}/destroy',
   handler: controller.destroy

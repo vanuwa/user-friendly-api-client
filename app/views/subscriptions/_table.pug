@@ -5,7 +5,9 @@ mixin table_row(index, item)
     td= item.event_types
     td= item.target_url
     td
-      a.btn.btn-info(href='/subscriptions/' + item._id) View
+      a.btn.btn-info.btn-sm(href='/subscriptions/' + item._id) View
+      span &nbsp;&nbsp;&nbsp;
+      a.btn.btn-danger.btn-sm(href='/subscriptions/' + item._id + '/destroy') Delete
 
 mixin table(collection)
   .table-responsive
