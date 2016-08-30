@@ -6,7 +6,9 @@ const config = require('config').api;
 const ApplicationModel = require('./application_model');
 const request = require('request');
 const util = require('util');
-const auth_token = 'Bearer Dh12WipmTDZCXrk5wTuSRPzCYUoUcmXY';
+const auth_token = config.access_token[11];
+// const auth_token = 'Bearer Dh12WipmTDZCXrk5wTuSRPzCYUoUcmXY'; // 11.sup
+// const auth_token = 'Bearer synZWYC6mGpWQXqLYGeAbncBh4CCwxu2'; // 1001.ira_company
 
 const api_url = `${config.protocol}://${config.host}:${config.port}`;
 

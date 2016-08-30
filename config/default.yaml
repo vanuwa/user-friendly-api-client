@@ -5,6 +5,9 @@ service:
 api:
   protocol: 'http'
   host: localhost
-  port: 3001
+  port: 3000
+  access_token:
+    1001: 'Bearer synZWYC6mGpWQXqLYGeAbncBh4CCwxu2'
+    11: 'Bearer Dh12WipmTDZCXrk5wTuSRPzCYUoUcmXY'
 template_engine:
   is_cached: true
