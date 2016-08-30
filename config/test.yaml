@@ -1,0 +1,4 @@
+api:
+  protocol: 'http'
+  host: 10-60-28-150.ams.kwebbl.dev
+  port: 4003

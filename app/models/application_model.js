@@ -42,6 +42,18 @@ class Model {
 
     return json;
   }
+
+  extractModel (obj) {
+    const model = {};
+
+    Object.getOwnPropertyNames(this._defaultModel()).forEach((name) => {
+      if (obj[name]) {
+        model[name] = obj[name];
+      }
+    });
+
+    return model;
+  }
 }
 
 module.exports = Model;

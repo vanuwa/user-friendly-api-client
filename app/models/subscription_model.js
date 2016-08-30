@@ -19,7 +19,8 @@ class SubscriptionModel extends ApplicationModel {
       created_by: {},
       organization_id: null,
       event_types: [],
-      target_url: ''     /* POST to that url when events occurs */
+      target_url: '',     /* POST to that url when events occurs */
+      filters: []
     };
   }
 

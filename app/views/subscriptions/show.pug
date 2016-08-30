@@ -48,6 +48,19 @@ block content
         .col-sm-10
             #subscription_created_by.form-control= user_id
 
+    - var is_filters_present = !!(subscription.filters && subscription.filters.length > 0);
+    if is_filters_present
+      .form-group
+        label.control-label.col-sm-2(for='subscription_filters') Filters
+          .col-sm-10#subscription_filters
+
+      each filter, index in subscription.filters
+        .form-group
+          label.control-label.col-sm-2(for=index)= filter.key
+          .col-sm-10(id=index)
+            each value in filter.values
+              .form-control= value
+
     .form-group
       .col-sm-2
         button.btn.btn-danger.form-control(type='submit') Delete

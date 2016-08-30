@@ -27,6 +27,25 @@ block content
       label.control-label.col-sm-3(for='subscription_target_url') Target URL
       .col-sm-6
         input#subscription_target_url.form-control(type='text', name='target_url', value=subscription.target_url)
+
+    .form-group
+      label.control-label.col-sm-3 Filter Key
+      .col-sm-6
+        label.radio-inline(for='extension_id')
+          input(type='radio' name='filter_key' id='extension_id' value='extension_id' checked)
+          | Extension ID
+        label.radio-inline(for='number')
+          input(type='radio' name='filter_key' id='number' value='number')
+          | Number
+
+    .form-group
+      label.control-label.col-sm-3 Filter Values
+      .col-sm-6
+        input#filter_value_1.form-control(type='text', name='filter_values', value='')
+        input#filter_value_2.form-control(type='text', name='filter_values', value='')
+        input#filter_value_3.form-control(type='text', name='filter_values', value='')
+
     .form-group
       .col-sm-offset-3.col-sm-6
         button.btn.btn-success.form-control(type='submit') Create Subscription
+
