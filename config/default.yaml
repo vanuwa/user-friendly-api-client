@@ -5,6 +5,6 @@ service:
 api:
   protocol: 'http'
   host: localhost
-  port: 3000
+  port: 3001
 template_engine:
   is_cached: true

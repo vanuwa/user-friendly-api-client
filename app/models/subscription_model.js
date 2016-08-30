@@ -6,7 +6,7 @@ const config = require('config').api;
 const ApplicationModel = require('./application_model');
 const request = require('request');
 const util = require('util');
-const auth_token = 'Bearer CUSkhgf7Mxlj1rmqk5kpwy0O2mNEls14';
+const auth_token = 'Bearer Dh12WipmTDZCXrk5wTuSRPzCYUoUcmXY';
 
 const api_url = `${config.protocol}://${config.host}:${config.port}`;
 
